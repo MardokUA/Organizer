@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Органайзер</string>
+    <string name="menu_language_rus">Русский</string>
+    <string name="menu_language_eng">Английский</string>
+    <string name="menu_settings">Установки</string>
+    <string name="menu_preference">Настройки</string>
+    <string name="menu_language">Язык</string>
+    <string name="set_time">Установить время</string>
+    <string name="refresh">Обновить</string>
+    <string name="stop">Стоп</string>
+    <string name="start">Старт</string>
+    <string name="choose_time">Выбрать время</string>
+</resources>

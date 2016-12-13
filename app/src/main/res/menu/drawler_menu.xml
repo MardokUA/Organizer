@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Calculator"
+        android:id="@+id/mi_calculator"
+        android:icon="@android:drawable/star_big_off"
+        android:checkable="true" />
+    <item android:title="Stopwatch"
+        android:id="@+id/mi_stopwatch"
+        android:icon="@android:drawable/star_big_off"
+        android:checkable="true" />
+    <item android:title="Timer"
+        android:checkable="true"
+        android:id="@+id/mi_timer"
+        android:icon="@android:drawable/star_big_off" />
+</menu>

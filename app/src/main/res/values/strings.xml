@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Organiser Desktop</string>
+    <string name="menu_language_rus">Russian</string>
+    <string name="menu_language_eng">English</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_preference">Preference</string>
+    <string name="menu_language">Language</string>
+    <string name="set_time">Set time</string>
+    <string name="refresh">Refresh</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="choose_time">Set time</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menu_language"
+        android:id="@+id/mi_language">
+        <menu >
+
+            <group  android:checkableBehavior="single">
+
+                <item android:title="@string/menu_language_eng"
+                    android:id="@+id/mi_english" />
+                <item android:title="@string/menu_language_rus"
+                    android:id="@+id/mi_Russian" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/menu_settings"
+        android:id="@+id/mi_settings" />
+    <item android:title="@string/menu_preference"
+        android:id="@+id/mi_preference" />
+</menu>
