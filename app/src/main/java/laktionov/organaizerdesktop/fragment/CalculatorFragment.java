@@ -104,7 +104,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             case R.id.btn_div:
 
                 operation = btn.getText().toString();
-                if (num1.equals(result)) {
+                if (num1 == (result)) {
                     text.clear();
                     break;
                 } else {
