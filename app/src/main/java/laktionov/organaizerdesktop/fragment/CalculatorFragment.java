@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import laktionov.organaizerdesktop.R;
 
@@ -24,7 +26,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     private EditText tvResult;
     private Double num1;
     private Double num2;
-    private Double result;
+    private Double result = 0.;
     private String operation;
     private String decimalSeparator;
 
@@ -68,7 +70,6 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
         Button btn = (Button) view;
         Editable text = tvResult.getText();
-        result = 0.;
 
         switch (btn.getId()) {
             case R.id.btn0:
@@ -94,14 +95,13 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             case R.id.btn_div:
 
                 operation = btn.getText().toString();
-                if (num1 == result) {
-                    break;
-                }
-                num1 = Double.parseDouble(tvResult.getText().toString());
-
-                if (text != null) {
+                if (num1.equals(result)) {
                     text.clear();
+                    break;
+                } else {
+                    num1 = Double.parseDouble(tvResult.getText().toString());
                 }
+                text.clear();
                 break;
 
             case R.id.btn_eql:
@@ -135,9 +135,9 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
             case R.id.btn_clear:
 
-                num1 = null;
-                num2 = null;
-                result = null;
+                num1 = 0.;
+                num2 = 0.;
+                result = 0.;
                 tvResult.setText("0");
                 break;
         }
