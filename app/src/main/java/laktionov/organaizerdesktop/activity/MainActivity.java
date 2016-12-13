@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.mi_preference:
                 break;
-            case R.id.mi_language:
             case R.id.mi_Russian:
                 item.setChecked(!item.isChecked());
                 if (item.isChecked()) {
