@@ -4,8 +4,10 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,6 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import laktionov.organaizerdesktop.R;
+import laktionov.organaizerdesktop.activity.SettingsActivity;
 import laktionov.organaizerdesktop.receiver.AlarmReceiver;
 
 /**
@@ -50,6 +53,7 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
     private long hrs;
     private Long targetTime;
     private long stopTime;
+    private SharedPreferences sharedPref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +85,10 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_timer, container, false);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        int theme = sharedPref.getInt(SettingsActivity.APP_THEME, R.style.AppTheme);
+        getActivity().setTheme(theme);
+
         tvTimer = (TextView) root.findViewById(R.id.tvTimerTime);
         btnStart = (Button) root.findViewById(R.id.btn_startTimer);
         btnStop = (Button) root.findViewById(R.id.btn_stopTimer);
@@ -107,11 +115,6 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
 
         switch (view.getId()) {
             case R.id.btn_startTimer:
-
-                //Wrong stoptime set
-                stopTime = System.currentTimeMillis() + targetTime;
-
-                Log.i("SETTIME", stopTime+"");
 
                 getActivity()
                         .getPreferences(Context.MODE_PRIVATE)
@@ -167,6 +170,8 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
         this.sec = 0;
         this.ms = 0;
 
+        stopTime = System.currentTimeMillis() + targetTime;
+
         tvTimer.setText(String.format(Locale.getDefault(), "%02d:%02d:00.00", hours, minute));
 
 
@@ -185,11 +190,6 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
             long millis = stopTime - System.currentTimeMillis();
 
             if (millis > 0) {
-                /*
-                * int seconds = (int) (milliseconds / 1000) % 60;
-                * int minutes = (int) ((milliseconds / (1000*60)) % 60);
-                * int hours   = (int) ((milliseconds / (1000*60*60)) % 24);
-                */
 
                 ms = millis % 100;
                 sec = (millis / 1000) % 60;
@@ -199,7 +199,6 @@ public class TimerFragment extends Fragment implements View.OnClickListener, Tim
                 ms = sec = min = hrs = 0;
                 cancel();
 
-                Log.i("STOPTIME", stopTime+"-" + System.currentTimeMillis());
             }
 
             time = String.format(Locale.getDefault(), "%02d:%02d:%02d.%02d", hrs, min, sec, ms);

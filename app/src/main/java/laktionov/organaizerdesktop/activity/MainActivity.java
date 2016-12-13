@@ -2,6 +2,7 @@ package laktionov.organaizerdesktop.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import laktionov.organaizerdesktop.R;
 import laktionov.organaizerdesktop.fragment.CalculatorFragment;

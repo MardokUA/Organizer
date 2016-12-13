@@ -1,8 +1,10 @@
 package laktionov.organaizerdesktop.fragment;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import laktionov.organaizerdesktop.R;
+import laktionov.organaizerdesktop.activity.SettingsActivity;
 
 /**
  * Created by mardo on 08.12.2016.
@@ -41,6 +44,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener 
     private long sec;
     private long minutes;
     private long hours;
+    private SharedPreferences sharedPref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +74,10 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_stopwatch, container, false);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        int theme = sharedPref.getInt(SettingsActivity.APP_THEME, R.style.AppTheme);
+        getActivity().setTheme(theme);
+        
         tvTimer = (TextView) root.findViewById(R.id.tvTimer);
         btnStart = (Button) root.findViewById(R.id.btn_start);
         btnStop = (Button) root.findViewById(R.id.btn_stop);

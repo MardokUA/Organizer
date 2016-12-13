@@ -1,6 +1,8 @@
 package laktionov.organaizerdesktop.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -16,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import laktionov.organaizerdesktop.R;
+import laktionov.organaizerdesktop.activity.SettingsActivity;
 
 /**
  * Created by mardo on 08.12.2016.
@@ -29,10 +32,12 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     private Double result = 0.;
     private String operation;
     private String decimalSeparator;
+    private SharedPreferences sharedPref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         decimalSeparator = String.valueOf(symbols.getDecimalSeparator());
@@ -42,6 +47,10 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_calculator, container, false);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        int theme = sharedPref.getInt(SettingsActivity.APP_THEME, R.style.AppTheme);
+        getActivity().setTheme(theme);
 
         tvResult = (EditText) root.findViewById(R.id.tvResult);
 

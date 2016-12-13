@@ -21,7 +21,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private CheckBox cbGreenTheme;
     private CheckBox cbOceanTheme;
     public static final String APP_THEME = "THEME";
-
     SharedPreferences sharedPref;
 
     @Override
@@ -82,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
                     sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putInt(APP_THEME,R.style.AppTheme3 );
+                    editor.putInt(APP_THEME, R.style.AppTheme3);
                     editor.apply();
                 }
                 finish();
@@ -90,4 +89,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
+
 }
